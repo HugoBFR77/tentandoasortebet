@@ -2,207 +2,214 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#100d18">
-  <title>Tentando a Sorte 🎰</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      background: #100d18;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
-
-    header {
-      padding: 28px 15px;
-      background: linear-gradient(135deg, #28133c, #12101b);
-      border-bottom: 2px solid #f5c451;
-    }
-
-    header h1 {
-      margin: 0;
-      color: #f5c451;
-      font-size: 30px;
-    }
-
-    header p {
-      color: #ddd;
-      margin-bottom: 0;
-    }
-
-    main {
-      padding: 20px 14px;
-      max-width: 520px;
-      margin: auto;
-    }
-
-    .saldo {
-      background: #211b2d;
-      border: 1px solid #57436c;
-      border-radius: 16px;
-      padding: 20px;
-      margin: 15px 0 24px;
-    }
-
-    .saldo h2 {
-      font-size: 17px;
-      color: #ddd;
-    }
-
-    #saldo {
-      color: #f5c451;
-      font-size: 30px;
-      font-weight: bold;
-      margin: 10px 0;
-    }
-
-    .jogo {
-      background: linear-gradient(145deg, #29143b, #1b1725);
-      border: 1px solid #6d4c7e;
-      border-radius: 18px;
-      padding: 24px 16px;
-      margin-bottom: 18px;
-      box-shadow: 0 5px 20px #0005;
-    }
-
-    .icone {
-      font-size: 65px;
-      margin: 12px;
-    }
-
-    button {
-      width: 100%;
-      max-width: 290px;
-      padding: 14px;
-      background: #f5c451;
-      color: #21152b;
-      font-size: 16px;
-      font-weight: bold;
-      border: none;
-      border-radius: 10px;
-      margin: 8px auto;
-      cursor: pointer;
-    }
-
-    button:disabled {
-      opacity: 0.5;
-    }
-
-    #resultado {
-      min-height: 24px;
-      color: #f5c451;
-      font-weight: bold;
-    }
-
-    .aviso {
-      color: #bbb;
-      font-size: 12px;
-      line-height: 1.6;
-      margin-top: 25px;
-    }
-
-    footer {
-      padding: 20px;
-      border-top: 1px solid #33283f;
-      color: #aaa;
-      font-size: 12px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#100b19">
+<title>Tentando a Sorte</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#100b19;color:#fff;font-family:Arial,sans-serif}
+header{padding:20px 15px;background:#21132c;border-bottom:2px solid #e6bd61}
+.top{max-width:1000px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.logo{font-size:22px;font-weight:900;color:#f5d477}
+button{cursor:pointer;border:0;border-radius:9px;padding:12px;font-weight:bold}
+.gold{background:#f5d477;color:#21132c}
+.outline{background:transparent;color:#f5d477;border:1px solid #f5d477}
+main{max-width:1000px;margin:auto;padding:18px 14px}
+.hero{background:linear-gradient(130deg,#49204f,#1e1730 65%,#725021);padding:25px 20px;border-radius:18px;border:1px solid #77518a}
+.hero h1{font-size:29px;margin:0 0 10px}
+.hero p{color:#e8ddeb;line-height:1.5}
+.balance{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;background:#211a2c;padding:15px;border-radius:13px;margin:15px 0}
+.balance strong{color:#f5d477;font-size:23px}
+h2{font-size:21px}
+.filters{display:flex;gap:8px;overflow:auto;padding-bottom:12px}
+.filters button{white-space:nowrap;background:#2a2036;color:white}
+.filters button.active{background:#f5d477;color:#21132c}
+.games{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{background:#211a2c;border:1px solid #44304e;border-radius:15px;overflow:hidden}
+.art{height:130px;display:flex;align-items:center;justify-content:center;font-size:67px;background:radial-gradient(circle at 50% 40%,#6e3d66,#29192f 70%)}
+.card:nth-child(2) .art{background:radial-gradient(circle,#a45b25,#352018 70%)}
+.card:nth-child(3) .art{background:radial-gradient(circle,#4e3c9d,#201936 70%)}
+.card:nth-child(4) .art{background:radial-gradient(circle,#a13a51,#36182a 70%)}
+.info{padding:12px}
+.info h3{margin:0 0 7px;font-size:16px}
+.info p{font-size:12px;color:#c8bdce;min-height:28px}
+.info button{width:100%}
+.tag{font-size:10px;color:#f5d477;letter-spacing:1px}
+.panel{display:none;background:#211a2c;border:1px solid #67477b;border-radius:16px;padding:18px;margin-top:20px;text-align:center}
+.panel.show{display:block}
+.reels{display:flex;justify-content:center;gap:8px;margin:22px 0}
+.reel{width:76px;height:85px;display:flex;align-items:center;justify-content:center;background:#fff4d8;color:#21132c;border:3px solid #d5a744;border-radius:12px;font-size:39px}
+#result{min-height:25px;color:#f5d477;font-weight:bold;line-height:1.5}
+.note{font-size:12px;color:#bdb2c5;line-height:1.6;margin-top:25px}
+footer{text-align:center;padding:25px;color:#9e91a8;font-size:12px}
+@media(min-width:650px){.games{grid-template-columns:repeat(4,minmax(0,1fr))}.art{height:160px}}
+</style>
 </head>
-
 <body>
-  <header>
-    <h1>🎰 Tentando a Sorte</h1>
-    <p>Entretenimento e diversão!</p>
-  </header>
+<header>
+  <div class="top">
+    <div class="logo">👑 TENTANDO A SORTE</div>
+    <button class="outline" onclick="avisoConta()">ENTRAR</button>
+  </div>
+</header>
+<main>
+  <section class="hero">
+    <div class="tag">SEU PORTAL DE DIVERSÃO</div>
+    <h1>🍀 Sua próxima aventura começa aqui!</h1>
+    <p>Explore jogos demonstrativos, descubra combinações e divirta-se com fichas virtuais.</p>
+    <button class="gold" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">EXPLORAR JOGOS ↓</button>
+  </section>
 
-  <main>
-    <section class="saldo">
-      <h2>🪙 SEU SALDO VIRTUAL</h2>
-      <div id="saldo">1000 fichas</div>
-      <p>Fichas de demonstração, sem valor monetário.</p>
-    </section>
+  <section class="balance">
+    <div>🪙 Seu saldo demonstrativo<br><strong id="balance">1.000 fichas</strong></div>
+    <button class="outline" onclick="repor()">REINICIAR FICHAS</button>
+  </section>
 
-    <section class="jogo">
-      <div class="icone">🎡</div>
-      <h2>Roleta da Sorte</h2>
-      <p>Gire a roleta e teste sua sorte!</p>
-      <p>Custo: 10 fichas por rodada.</p>
-      <button id="jogar" onclick="jogar()">GIRAR A ROLETA</button>
-      <p id="resultado">Boa sorte! 🍀</p>
-    </section>
+  <h2 id="catalogo">🎮 Jogos em destaque</h2>
+  <div class="filters">
+    <button class="active" onclick="filtrar('todos',this)">Todos</button>
+    <button onclick="filtrar('animal',this)">Animais</button>
+    <button onclick="filtrar('fantasia',this)">Fantasia</button>
+    <button onclick="filtrar('classico',this)">Clássicos</button>
+  </div>
 
-    <section class="jogo">
-      <div class="icone">🎰</div>
-      <h2>Caça-níquel</h2>
-      <p>Em breve, mais um jogo demonstrativo!</p>
-      <button onclick="alert('Este jogo será adicionado em uma próxima atualização!')">
-        EM BREVE
-      </button>
-    </section>
+  <section class="games">
+    <article class="card" data-cat="animal">
+      <div class="art">🐯</div>
+      <div class="info">
+        <div class="tag">JOGO DEMONSTRATIVO</div>
+        <h3>Tigre da Sorte</h3>
+        <p>Tema de tigre, ouro e símbolos especiais.</p>
+        <button class="gold" onclick="abrir('Tigre da Sorte','🐯')">JOGAR</button>
+      </div>
+    </article>
+    <article class="card" data-cat="animal">
+      <div class="art">🐂</div>
+      <div class="info">
+        <div class="tag">JOGO DEMONSTRATIVO</div>
+        <h3>Boi Dourado</h3>
+        <p>Descubra combinações douradas.</p>
+        <button class="gold" onclick="abrir('Boi Dourado','🐂')">JOGAR</button>
+      </div>
+    </article>
+    <article class="card" data-cat="fantasia">
+      <div class="art">🐉</div>
+      <div class="info">
+        <div class="tag">JOGO DEMONSTRATIVO</div>
+        <h3>Dragão Místico</h3>
+        <p>Uma aventura de fantasia.</p>
+        <button class="gold" onclick="abrir('Dragão Místico','🐉')">JOGAR</button>
+      </div>
+    </article>
+    <article class="card" data-cat="classico">
+      <div class="art">🍒</div>
+      <div class="info">
+        <div class="tag">JOGO DEMONSTRATIVO</div>
+        <h3>Frutas da Sorte</h3>
+        <p>Um clássico colorido de frutas.</p>
+        <button class="gold" onclick="abrir('Frutas da Sorte','🍒')">JOGAR</button>
+      </div>
+    </article>
+  </section>
 
-    <p class="aviso">
-      Este site é uma demonstração de jogos com fichas fictícias.
-      Não aceita depósitos, não realiza saques e não oferece prêmios
-      em dinheiro real.
-    </p>
-  </main>
+  <section class="panel" id="panel">
+    <button class="outline" onclick="fechar()">← VOLTAR AOS JOGOS</button>
+    <h2 id="gameTitle">Tigre da Sorte</h2>
+    <p>Gire os símbolos usando 10 fichas virtuais.</p>
+    <div class="reels">
+      <div class="reel" id="r1">🐯</div>
+      <div class="reel" id="r2">🪙</div>
+      <div class="reel" id="r3">✨</div>
+    </div>
+    <button class="gold" id="spin" onclick="girar()">🎰 GIRAR — 10 FICHAS</button>
+    <p id="result">Boa sorte! 🍀</p>
+  </section>
 
-  <footer>
-    © 2026 Tentando a Sorte | Projeto de entretenimento
-  </footer>
+  <p class="note">Este é um projeto de entretenimento com fichas fictícias. Não há depósitos, pagamentos, saques ou prêmios em dinheiro real. As contas e o saldo desta versão ainda não são persistentes.</p>
+</main>
+<footer>© 2026 Tentando a Sorte · Jogos demonstrativos</footer>
 
-  <script>
-    let fichas = 1000;
-    let aguardando = false;
+<script>
+let saldo=1000;
+let simboloAtual='🐯';
+let rodando=false;
+const simbolos=['🐯','🐂','🐉','🍒','🍋','💎','⭐','🪙','7️⃣'];
 
-    function atualizarSaldo() {
-      document.getElementById("saldo").textContent =
-        fichas + " fichas";
-    }
-
-    function jogar() {
-      if (aguardando) return;
-
-      const resultado = document.getElementById("resultado");
-      const botao = document.getElementById("jogar");
-
-      if (fichas < 10) {
-        resultado.textContent = "Você ficou sem fichas!";
-        return;
-      }
-
-      aguardando = true;
-      botao.disabled = true;
-      fichas -= 10;
-      atualizarSaldo();
-
-      resultado.textContent = "A roleta está girando... 🎡";
-
-      setTimeout(function() {
-        const numero = Math.floor(Math.random() * 10);
-
-        if (numero >= 8) {
-          fichas += 40;
-          resultado.textContent =
-            "🎉 Você ganhou 40 fichas! Número: " + numero;
-        } else {
-          resultado.textContent =
-            "Não foi desta vez! Número: " + numero;
-        }
-
-        atualizarSaldo();
-        aguardando = false;
-        botao.disabled = false;
-      }, 900);
-    }
-  </script>
+function atualizar(){
+ document.getElementById('balance').textContent=saldo.toLocaleString('pt-BR')+' fichas';
+}
+function abrir(nome,simbolo){
+ simboloAtual=simbolo;
+ document.getElementById('gameTitle').textContent=nome;
+ document.getElementById('r1').textContent=simbolo;
+ document.getElementById('r2').textContent='🪙';
+ document.getElementById('r3').textContent='✨';
+ document.getElementById('result').textContent='Boa sorte! 🍀';
+ document.getElementById('panel').classList.add('show');
+ document.getElementById('panel').scrollIntoView({behavior:'smooth'});
+}
+function fechar(){
+ document.getElementById('panel').classList.remove('show');
+}
+function girar(){
+ if(rodando)return;
+ const result=document.getElementById('result');
+ const spin=document.getElementById('spin');
+ if(saldo<10){
+  result.textContent='Fichas insuficientes. Reinicie o saldo para continuar.';
+  return;
+ }
+ rodando=true;
+ spin.disabled=true;
+ saldo-=10;
+ atualizar();
+ result.textContent='Girando os rolos...';
+ let n=0;
+ const timer=setInterval(()=>{
+  for(let i=1;i<=3;i++){
+   document.getElementById('r'+i).textContent=simbolos[Math.floor(Math.random()*simbolos.length)];
+  }
+  n++;
+  if(n>=10){
+   clearInterval(timer);
+   const a=simbolos[Math.floor(Math.random()*simbolos.length)];
+   const b=simbolos[Math.floor(Math.random()*simbolos.length)];
+   const c=simbolos[Math.floor(Math.random()*simbolos.length)];
+   document.getElementById('r1').textContent=a;
+   document.getElementById('r2').textContent=b;
+   document.getElementById('r3').textContent=c;
+   if(a===b&&b===c){
+    saldo+=100;
+    result.textContent='🎉 TRÊS IGUAIS! Você ganhou 100 fichas virtuais!';
+   }else if(a===b||b===c||a===c){
+    saldo+=20;
+    result.textContent='✨ Dois símbolos iguais! Você ganhou 20 fichas virtuais.';
+   }else{
+    result.textContent='Não foi desta vez. Tente outra rodada!';
+   }
+   atualizar();
+   rodando=false;
+   spin.disabled=false;
+  }
+ },90);
+}
+function repor(){
+ saldo=1000;
+ atualizar();
+ document.getElementById('result').textContent='Saldo virtual reiniciado.';
+}
+function filtrar(cat,botao){
+ document.querySelectorAll('.filters button').forEach(b=>b.classList.remove('active'));
+ botao.classList.add('active');
+ document.querySelectorAll('.card').forEach(card=>{
+  card.style.display=(cat==='todos'||card.dataset.cat===cat)?'block':'none';
+ });
+}
+function avisoConta(){
+ alert('O cadastro seguro será adicionado na próxima etapa. Esta versão ainda não possui contas reais.');
+}
+atualizar();
+</script>
 </body>
 </html>
